@@ -68,7 +68,7 @@ const login = (req, res, next) => {
 };
 
 const getCrsfToken = (req, res) => {
-  res.cookie('XSRF-TOKEN', req.csrfToken(), { sameSite: 'none', secure: process.env.NODE_ENV !== 'postman' });
+  res.cookie('XSRF-TOKEN', req.csrfToken());
   res.json({ token: req.csrfToken() });
 };
 

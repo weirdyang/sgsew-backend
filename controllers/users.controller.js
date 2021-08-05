@@ -42,7 +42,7 @@ const getUser = wrap(async (req, res, next) => {
   const { userId } = req.params;
   let user;
   try {
-    user = await User.findById(userId, '-password').populate('products');
+    user = await User.findById(userId, '-password');
   } catch (err) {
     const error = new HttpError(
       'Error fetching user details, please try again later',

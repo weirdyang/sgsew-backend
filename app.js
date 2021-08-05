@@ -17,7 +17,7 @@ const csrfProtection = csurf(
       sameSite: 'none',
       secure: process.env.NODE_ENV !== 'postman',
     },
-    value: (req) => req.cookies['XSRF-TOKEN'],
+    value: (req) => req.cookies['XSRF-TOKEN'] ?? req.headers['XSRF-TOKEN'],
     ignoreMethods: process.env.NODE_ENV === 'test' ? ['GET', 'HEAD', 'OPTIONS', 'POST', 'DELETE', 'PUT'] : ['GET', 'HEAD', 'OPTIONS'],
   },
 );

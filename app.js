@@ -31,7 +31,7 @@ require('./config/passport')(app);
 require('./config/mongoose')();
 
 const corsOptions = {
-  origin: '*',
+  origin: process.env.CLIENT_URL ?? '*',
   credentials: true,
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };

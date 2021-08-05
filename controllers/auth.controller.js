@@ -2,7 +2,6 @@ const debug = require('debug')('app:auth:controller');
 const { validationResult } = require('express-validator');
 const passport = require('passport');
 
-const { eventNames } = require('../app');
 const { secret } = require('../config/index');
 const { errorFormatter, handleError } = require('../formatters');
 const HttpError = require('../models/http-error');

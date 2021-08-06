@@ -27,7 +27,7 @@ router.get('/logout', logOut);
 
 router.get('/crsftoken', getCrsfToken);
 
-router.get('/key/:key', checkKey);
+router.post('/key', checkKey);
 
 module.exports = {
   auth: {

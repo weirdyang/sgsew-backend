@@ -72,7 +72,9 @@ const getCrsfToken = (req, res) => {
 };
 
 const checkKey = (req, res, next) => {
-  if (req.params.key !== secret) {
+  const { key } = req.body;
+
+  if (key !== secret) {
     return next(new HttpError('Invalid sign up key', 403));
   }
   return res.json({ message: 'Please register an account' });

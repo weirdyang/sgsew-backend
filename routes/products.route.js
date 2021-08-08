@@ -32,11 +32,16 @@ const fileCheck = check('file')
 const nameCheck = check('name').not().isEmpty().bail();
 const descriptionCheck = check('description').not().isEmpty().bail();
 const productTypeCheck = check('productType').not().isEmpty().bail();
+const brandCheck = check('brand').not().isEmpty().bail();
+const priceCheck = check('price').not().isEmpty().isNumeric()
+  .bail();
 const reqChecks = [
   nameCheck,
   descriptionCheck,
   fileCheck,
   productTypeCheck,
+  brandCheck,
+  priceCheck,
 ];
 // all requests must be authenticated
 router.use(auth.jwt);

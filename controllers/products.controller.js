@@ -43,6 +43,8 @@ const createProduct = async (req, res, next) => {
       user: req.user.id,
       description: req.body.description,
       productType: req.body.productType,
+      brand: req.body.brand,
+      price: req.brand.price,
       image: {
         data: req.file.buffer,
         contentType: req.file.mimetype,
@@ -121,7 +123,9 @@ const updateProductDetails = async (req, res, next) => {
     return next(new HttpError('Invalid inputs', 422, result.array()));
   }
   try {
-    const { name, description, productType } = req.body;
+    const {
+      name, description, productType, price, brand,
+    } = req.body;
     const productId = mongoose.Types.ObjectId(req.params.id);
     const product = await Product.findOneAndUpdate(
       { _id: productId },
@@ -129,6 +133,8 @@ const updateProductDetails = async (req, res, next) => {
         name,
         description,
         productType,
+        price,
+        brand,
         user: req.user.id,
       },
       { new: true },
@@ -174,13 +180,18 @@ const updateProduct = async (req, res, next) => {
     return next(new HttpError('Invalid inputs', 422, result.array()));
   }
   try {
-    const { name, description } = req.body;
+    const {
+      name, description, price, brand, productType,
+    } = req.body;
     const productId = mongoose.Types.ObjectId(req.params.id);
     const product = await Product.findOneAndUpdate(
       { _id: productId },
       {
         name,
         description,
+        price,
+        brand,
+        productType,
         image: {
           data: req.file.buffer,
           contentType: req.file.mimetype,

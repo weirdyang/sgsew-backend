@@ -129,6 +129,7 @@ const updateProductDetails = async (req, res, next) => {
         name,
         description,
         productType,
+        user: req.user.id,
       },
       { new: true },
     );
@@ -157,6 +158,7 @@ const updateProductImage = async (req, res, next) => {
           data: req.file.buffer,
           contentType: req.file.mimetype,
         },
+        user: req.user.id,
       },
       { new: true },
     );
@@ -183,6 +185,7 @@ const updateProduct = async (req, res, next) => {
           data: req.file.buffer,
           contentType: req.file.mimetype,
         },
+        user: req.user.id,
       },
       { new: true },
     );

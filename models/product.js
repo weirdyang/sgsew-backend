@@ -23,6 +23,17 @@ const productSchema = new mongoose.Schema({
     unique: false,
     minLength: [6, 'Product type needs to be at least 6 characters'],
   },
+  brand: {
+    type: String,
+    required: [true, 'Brand can not be blank'],
+    unique: false,
+    minLength: [3, 'Brand name needs to be at least 3 characters'],
+  },
+  price: {
+    type: Number,
+    required: [true, 'Price is required'],
+    default: 0,
+  },
   image:
   {
     data: Buffer,

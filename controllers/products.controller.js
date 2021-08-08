@@ -44,7 +44,7 @@ const createProduct = async (req, res, next) => {
       description: req.body.description,
       productType: req.body.productType,
       brand: req.body.brand,
-      price: req.brand.price,
+      price: req.body.price,
       image: {
         data: req.file.buffer,
         contentType: req.file.mimetype,

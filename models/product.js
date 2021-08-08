@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 
+const productTypes = ['hardware', 'services'];
 const productSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -19,6 +20,7 @@ const productSchema = new mongoose.Schema({
   },
   productType: {
     type: String,
+    enum: productTypes,
     required: [true, 'Product type can not be blank'],
     unique: false,
     minLength: [6, 'Product type needs to be at least 6 characters'],

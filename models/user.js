@@ -8,7 +8,7 @@ const uniqueValidator = require('mongoose-unique-validator');
 const { secret } = require('../config');
 
 const roles = {
-  normal: 'user',
+  normal: 'normal',
   superuser: 'admin',
 };
 const userSchema = new mongoose.Schema({

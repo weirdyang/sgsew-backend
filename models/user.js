@@ -56,6 +56,7 @@ userSchema.methods.toProfileJSONFor = function toUserProfile(user) {
   return {
     username: this.username,
     avatar: this.avatar,
+    role: this.role,
     following: user ? user.isFollowing(this._id) : false,
   };
 };
@@ -78,6 +79,7 @@ userSchema.methods.toJSON = function toJson() {
     avatar: this.avatar,
     email: this.email,
     username: this.username,
+    role: this.role,
   };
 };
 

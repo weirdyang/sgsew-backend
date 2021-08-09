@@ -59,7 +59,7 @@ const login = (req, res, next) => {
         token,
         {
           httpOnly: true,
-          secure: true, // set to true if sameSite none
+          secure: process.env.NODE_ENV !== 'postman',
           sameSite: 'none',
         });
       return res.status(200).send({ user: user.toJSON() });

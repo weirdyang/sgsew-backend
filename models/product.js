@@ -17,10 +17,12 @@ const productSchema = new mongoose.Schema({
     required: [true, 'Product description can not be blank'],
     unique: false,
     minLength: [6, 'Product description needs to be at least 6 characters'],
+    maxLength: [140, 'Product description can not exceed 140 characters'],
   },
   productType: {
     type: String,
     enum: productTypes,
+    lowercase: true,
     required: [true, 'Product type can not be blank'],
     unique: false,
     minLength: [6, 'Product type needs to be at least 6 characters'],

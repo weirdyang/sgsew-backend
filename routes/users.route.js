@@ -1,7 +1,7 @@
 const express = require('express');
 
 const {
-  getUsers, getUser, getUserInfo, getUserProfile,
+  getUsers, getUser, getUserInfo, getUserProfile, deleteUser,
 } = require('../controllers/users.controller');
 const User = require('../models/user');
 
@@ -27,5 +27,6 @@ router.get('/self', getUserInfo);
 router.get('/single/:userId', getUser);
 // get profile of user for viewing
 router.get('/profile/:username', getUserProfile);
-
+// delete user
+router.delete('/:id', deleteUser);
 module.exports = router;

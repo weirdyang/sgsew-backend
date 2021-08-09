@@ -12,7 +12,7 @@ module.exports = function localStrategy() {
         passwordField: 'password',
       },
       async (username, password, done) => {
-        User.findOne({ username }, '_id username email password')
+        User.findOne({ username }, '_id username email password role')
           .then(async (user) => {
             debug(user);
             if (!user) {

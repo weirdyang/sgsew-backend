@@ -79,6 +79,7 @@ userSchema.methods.toJSON = function toJson() {
     avatar: this.avatar,
     email: this.email,
     username: this.username,
+    role: this.role,
   };
 };
 

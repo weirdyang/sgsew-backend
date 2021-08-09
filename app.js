@@ -8,6 +8,8 @@ const debug = require('debug')('app');
 const express = require('express');
 const logger = require('morgan');
 
+debug(process.env.NODE_ENV, 'postman');
+debug(process.env.NODE_ENV !== 'postman');
 // read value from cookie
 // value: (req) => req.cookies['XSRF-TOKEN'],
 const csrfProtection = csurf(

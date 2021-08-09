@@ -206,6 +206,8 @@ const updateProduct = async (req, res, next) => {
   }
 };
 const deleteProduct = async (req, res, next) => {
+  debug(req.user.role, 'role');
+  debug(req.user);
   if (req.user.role !== roles.superuser) {
     return next(
       new HttpError(`Only ${roles.superuser} can delete products`, 401),
@@ -216,7 +218,7 @@ const deleteProduct = async (req, res, next) => {
   if (!product) {
     return res.status(404).send({ message: `no such product with ${productId}` });
   }
-  return res.json({ product });
+  return res.json({ messag: `${product.name} deleted.` });
 };
 
 const fetchProductById = async (req, res, next) => {

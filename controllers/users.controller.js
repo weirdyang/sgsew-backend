@@ -1,5 +1,8 @@
+const mongoose = require('mongoose');
+
 const HttpError = require('../models/http-error');
 const { User } = require('../models/user');
+const { roles } = require('../models/user');
 
 const wrap = (fn) => (...args) => fn(...args).catch(args[2]);
 
@@ -57,7 +60,23 @@ const getUser = wrap(async (req, res, next) => {
   }
   return res.json(user.toObject({ getters: true }));
 });
+
+const deleteUser = async (req, res, next) => {
+  if (req.user.role !== roles.superuser) {
+    return next(
+      new HttpError(`Only ${roles.superuser} can delete users`, 401),
+    );
+  }
+  const userId = mongoose.Types.ObjectId(req.params.id);
+  const user = await User.findByIdAndRemove(userId);
+  if (!user) {
+    return res.status(404).send({ message: `no such user with ${userId}` });
+  }
+
+  return res.json({ message: `${user.username} deleted.` });
+};
 module.exports = {
+  deleteUser,
   getUsers,
   getUser,
   getUserInfo,

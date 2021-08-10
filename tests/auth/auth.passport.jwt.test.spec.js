@@ -17,7 +17,7 @@ chai.should();
 
 const user = new User({
   username: 'abcdefg',
-  password: 'abcdefg',
+  password: 'abcdefg111111',
   avatar: 'leaf',
   email: 'axzc2swdf@email.com',
 });

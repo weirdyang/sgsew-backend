@@ -50,9 +50,13 @@ const searchProducts = async (req, res, next) => {
       .where()
       .sort(sortFilter)
       .skip(skip ?? 0)
-      .limit(limit ?? 12);
+      .limit(limit ?? 12)
+      .lean()
+      .exec();
+
+    const count = await Product.find(filter, '-image').count().exec();
     debug(filter, 'return');
-    return res.json(products);
+    return res.json({ data: products, count });
   } catch (error) {
     return next(error);
   }

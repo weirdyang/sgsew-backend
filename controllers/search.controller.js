@@ -1,6 +1,6 @@
-const { Product } = require('../models/product');
-
 const debug = require('debug')('app:search.controller');
+
+const { Product } = require('../models/product');
 
 const sortOptions = {
   nameasc: { name: 1 },

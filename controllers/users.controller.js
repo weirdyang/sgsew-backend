@@ -58,7 +58,7 @@ const getUser = wrap(async (req, res, next) => {
 const deleteUser = async (req, res, next) => {
   if (req.user.role !== roles.superuser) {
     return next(
-      new HttpError(`Only ${roles.superuser} can delete users`, 401),
+      new HttpError(`Only ${roles.superuser} can delete users`, 403),
     );
   }
   const userId = mongoose.Types.ObjectId(req.params.id);

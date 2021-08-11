@@ -269,7 +269,7 @@ Parameters:
 Returns:
 * 200 - if user sucessfully deleted
 * 404 - if no user with {:id} is found
-* 401 - if user is not an admin
+* 403 - if user is not an admin
 
 ###  `users/self` returns details of user associated with jwt token
 

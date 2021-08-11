@@ -6,16 +6,6 @@ const { roles } = require('../models/user');
 
 const wrap = (fn) => (...args) => fn(...args).catch(args[2]);
 
-const getUserProfile = wrap(async (req, res, next) => {
-  const user = await User.findById(req.user.id);
-  if (!user) {
-    return res.sendStatus(401);
-  }
-  // eslint-disable-next-line no-underscore-dangle
-  const profile = req.profile.toProfileJSONFor(user || false);
-  return res.json({ profile });
-});
-
 const getUsers = wrap(async (req, res, next) => {
   let users;
   try {
@@ -32,9 +22,9 @@ const getUsers = wrap(async (req, res, next) => {
 });
 
 const getUserInfo = wrap(async (req, res, next) => {
-  const user = await User.findById(req.user.id).populate('journals');
+  const user = await User.findById(req.user.id).lean();
   if (!user) {
-    return res.sendStatus(401);
+    return res.sendStatus(404);
   }
   return res.json({ user: user.toJSON() });
 });
@@ -80,5 +70,4 @@ module.exports = {
   getUsers,
   getUser,
   getUserInfo,
-  getUserProfile,
 };

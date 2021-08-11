@@ -7,6 +7,8 @@ const {
 } = require('../controllers/auth.controller');
 
 const router = express.Router();
+
+// creates user if req body contains necessary details
 router.post('/register',
   [
     check('username').not().isEmpty().withMessage('Username can not be empty')
@@ -16,7 +18,7 @@ router.post('/register',
     check('password').not().isEmpty().withMessage('Invalid password')
       .bail(),
   ], register);
-
+// logins user if username exists and password is correct
 router.post('/login',
   [
     check('username').not().isEmpty().bail(),
@@ -29,6 +31,7 @@ router.get('/logout', logOut);
 // gets csrftoken
 router.get('/csrftoken', getCsrfToken);
 
+// checks if sign up key is valid
 router.post('/key', checkKey);
 
 module.exports = {

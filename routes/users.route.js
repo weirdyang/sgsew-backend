@@ -25,8 +25,8 @@ router.get('/', getUsers);
 router.get('/self', getUserInfo);
 // get single user
 router.get('/single/:userId', getUser);
-// get profile of user for viewing
-router.get('/profile/:username', getUserProfile);
+
 // delete user
 router.delete('/:id', deleteUser);
+
 module.exports = router;

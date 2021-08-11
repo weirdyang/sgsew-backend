@@ -210,7 +210,7 @@ const deleteProduct = async (req, res, next) => {
   debug(req.user);
   if (req.user.role !== roles.superuser) {
     return next(
-      new HttpError(`Only ${roles.superuser} can delete products`, 403),
+      new HttpError(`Only ${roles.superuser} can delete products`, 401),
     );
   }
   const productId = mongoose.Types.ObjectId(req.params.id);

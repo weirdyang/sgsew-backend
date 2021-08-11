@@ -192,7 +192,7 @@ Parameters:
 Returns:
 * 200: If product is deleted succesfully
 * 404: If product with {:id} does not exist in database
-* 401: If user is not an admin
+* 403: If user is not an admin
 
 ###  `products/user/:id` gets a array of products created and/or last modified by user
 

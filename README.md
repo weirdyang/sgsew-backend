@@ -120,3 +120,114 @@ Returns:
      "token": "string"
  }
 ```
+
+## Products
+
+All methods in this area requires a JSON web token to be stored in a cookie with name `jwt`
+
+###  `/products/create` creates a new product
+
+Method: `POST`
+
+Parameters: `formData`
+
+```
+{
+    "name": "string",
+    "description": "string",
+    "productType": "string",
+    "brand": "string"
+    "price": "string"
+    "file": "file"
+}
+```
+
+Returns:
+* 200: If new product is created succesfully
+* 422: If validation fails
+    - any of the fields are empty
+    - name or description are shorter than 6 characters
+    - productType is not in ['hardware', 'services']
+    - brand is shorter than 3 characters
+
+###  `products/:id` update a product with id {:id}
+
+Method: `PUT`
+
+Parameters:
+
+`:id`: the id of the product to be updated
+
+`formData`:
+```
+{
+    "name": "string",
+    "description": "string",
+    "productType": "string",
+    "brand": "string"
+    "price": "string"
+    "file": "file"
+}
+```
+
+Returns:
+* 200: If product is updated succesfully
+* 422: If validation fails
+    - any of the fields are empty
+    - name or description are shorter than 6 characters
+    - productType is not in ['hardware', 'services']
+    - brand is shorter than 3 characters
+
+###  `products/:id` delete a product with id {:id}
+
+Method: `DELETE`
+
+Parameters:
+
+`:id`: the id of the product to be deleted
+
+Returns:
+* 200: If product is deleted succesfully
+* 404: If product with {:id} does not exist in database
+* 401: If user is not an admin
+
+###  `products/user/:id` gets a array of products created and/or last modified by user
+
+Method: `GET`
+
+Parameters:
+
+`:id`: the id of the user
+
+Returns:
+* 200
+```
+{
+    "products": []
+}
+```
+
+###  `products/details/:id` gets details of product with id {:id}
+
+Method: `GET`
+
+Parameters:
+
+`:id`: the id of the product
+
+Returns:
+* 200
+```
+{
+    "_id": "string",
+    "name": "string",
+    "user": "string",
+    "description": "string",
+    "productType": "string",
+    "createdAt": "string",
+    "updatedAt": "string",
+    "__v": number
+}
+```
+* 400 - if no product with that id exists in the database
+

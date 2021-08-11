@@ -224,11 +224,11 @@ const deleteProduct = async (req, res, next) => {
 const fetchProductById = async (req, res, next) => {
   try {
     const productId = mongoose.Types.ObjectId(req.params.id);
-    const product = await Product.findById(productId, '-image');
+    const product = await Product.findById(productId, '-image').lean().exec();
     if (!product) {
       return next(new HttpError(`No such product with id ${productId}`, 404));
     }
-    return res.json(product.toObject({ getters: true }));
+    return res.json(product);
   } catch (error) {
     return next(
       new HttpError(error.message, 500),

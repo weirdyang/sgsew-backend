@@ -25,6 +25,7 @@ const userSchema = new mongoose.Schema({
   avatar: {
     type: String,
     lowercase: true,
+    default: 'leaf',
     required: [true, 'Please select an avatar'],
   },
   email: {

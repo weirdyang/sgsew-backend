@@ -233,6 +233,20 @@ Returns:
 ```
 * 400 - if no product with that id exists in the database
 
+###  `/products/image/:id` returns image associated for product with {:id}
+
+Method: `GET`
+
+Parameters:
+
+`:id`: the id of the product
+
+Returns:
+* 200 with
+Headers:
+ - Content-Type: product.image.contentType,
+ - Content-Length': product.image.length
+
 ## Users
 
 All methods in this area requires a JSON web token to be stored in a cookie with name `jwt`
@@ -306,4 +320,6 @@ Returns:
 }
 ```
 * 404 - if user with {:id} does not exist
+
+
 

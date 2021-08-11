@@ -228,8 +228,7 @@ Returns:
     "description": "string",
     "productType": "string",
     "createdAt": "string",
-    "updatedAt": "string",
-    "__v": number
+    "updatedAt": "string"
 }
 ```
 * 400 - if no product with that id exists in the database

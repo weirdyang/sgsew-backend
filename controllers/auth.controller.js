@@ -66,7 +66,7 @@ const login = (req, res, next) => {
     })(req, res, next);
 };
 
-const getCrsfToken = (req, res) => {
+const getCsrfToken = (req, res) => {
   res.cookie('XSRF-TOKEN', req.csrfToken());
   res.json({ token: req.csrfToken() });
 };
@@ -83,6 +83,6 @@ module.exports = {
   register,
   login,
   logOut,
-  getCrsfToken,
+  getCsrfToken,
   checkKey,
 };

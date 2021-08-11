@@ -3,7 +3,7 @@ const { check } = require('express-validator');
 const passport = require('passport');
 
 const {
-  register, login, logOut, getCrsfToken, checkKey,
+  register, login, logOut, getCsrfToken, checkKey,
 } = require('../controllers/auth.controller');
 
 const router = express.Router();
@@ -23,9 +23,11 @@ router.post('/login',
     check('password').not().isEmpty().bail(),
   ], login);
 
+// clears jwt cookie
 router.get('/logout', logOut);
 
-router.get('/crsftoken', getCrsfToken);
+// gets csrftoken
+router.get('/csrftoken', getCsrfToken);
 
 router.post('/key', checkKey);
 

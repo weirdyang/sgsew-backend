@@ -59,7 +59,7 @@ const createProduct = async (req, res, next) => {
 };
 const fetchAllProducts = async (req, res, next) => {
   try {
-    const products = await Product.find({}, '-image');
+    const products = await Product.find({}, '-image').lean().exec();
 
     return res.json({ products, id: req.user.id });
   } catch (error) {
@@ -73,7 +73,7 @@ const fetchProductsByUser = async (req, res, next) => {
     debug(req.user.id);
     debug(req.params.id);
 
-    const products = await Product.find({ user: req.params.id }, '-image');
+    const products = await Product.find({ user: req.params.id }, '-image').lean().exec();
     return res.json({ products, id: req.user.id });
   } catch (error) {
     return next(
@@ -85,7 +85,7 @@ const fetchProductsForProfile = async (req, res, next) => {
   try {
     debug(req.user.id);
     debug(req.params.id);
-    const product = await Product.find({ user: req.user.id }, '-image');
+    const product = await Product.find({ user: req.user.id }, '-image').lean().exec();
     if (!product) {
       return res.status(404).send({ message: `Products for user: ${req.user.id}` });
     }

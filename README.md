@@ -90,7 +90,9 @@ Returns:
 
 Method: `POST`
 
-Parameters: `body`
+Parameters:
+
+`body`
 
 ```
 {
@@ -129,8 +131,9 @@ All methods in this area requires a JSON web token to be stored in a cookie with
 
 Method: `POST`
 
-Parameters: `formData`
+Parameters:
 
+`formData`
 ```
 {
     "name": "string",
@@ -230,4 +233,78 @@ Returns:
 }
 ```
 * 400 - if no product with that id exists in the database
+
+## Users
+
+All methods in this area requires a JSON web token to be stored in a cookie with name `jwt`
+
+###  `users/` return all users in the database
+
+Method: `GET`
+
+Returns:
+* 200
+```
+{
+    "users": [
+        {
+            "_id": "string",
+            "username": "string",
+            "email": "string",
+            "avatar": "string",
+            "createdAt": "string",
+            "updatedAt": "string"
+        }
+    ]
+}
+```
+
+###  `users/:id` deletes user with {:id} from database
+
+Method: `DELETE`
+
+Parameters:
+
+`:id` - id of user to be deleted
+
+Returns:
+* 200 - if user sucessfully deleted
+* 404 - if no user with {:id} is found
+* 401 - if user is not an admin
+
+###  `users/self` returns details of user associated with jwt token
+
+Method: `get`
+
+Returns:
+* 200
+```
+{
+    "_id": "string",
+    "role": "string",
+    "username": "string",
+    "email": "string",
+    "avatar": "string",
+    "createdAt": "string",
+    "updatedAt": "string"
+}
+```
+###  `users/single/:id` returns details of user with {:id}
+
+Method: `get`
+
+Returns:
+* 200
+```
+{
+    "_id": "string",
+    "role": "string",
+    "username": "string",
+    "email": "string",
+    "avatar": "string",
+    "createdAt": "string",
+    "updatedAt": "string"
+}
+```
+* 404 - if user with {:id} does not exist
 

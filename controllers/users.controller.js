@@ -5,11 +5,11 @@ const { User } = require('../models/user');
 const { roles } = require('../models/user');
 
 const wrap = (fn) => (...args) => fn(...args).catch(args[2]);
-
+const basicInfo = '_id avatar role email username createdAt updatedAt';
 const getUsers = wrap(async (req, res, next) => {
   let users;
   try {
-    users = await User.find({}, '-password');
+    users = await User.find({}, basicInfo).lean().exec();
   } catch (err) {
     const error = new HttpError(
       'Fetching users failed, please try again later',
@@ -18,16 +18,16 @@ const getUsers = wrap(async (req, res, next) => {
     return next(error);
   }
 
-  return res.json({ users: users.map((user) => user.toObject({ getters: true })) });
+  return res.json({ users });
 });
 
 const getUserInfo = wrap(async (req, res, next) => {
   try {
-    const user = await User.findById(req.user.id).lean();
+    const user = await User.findById(req.user.id, basicInfo).lean();
     if (!user) {
       return res.sendStatus(404);
     }
-    return res.json({ user: user.toJSON() });
+    return res.json(user);
   } catch (error) {
     return next(error);
   }
@@ -39,7 +39,7 @@ const getUser = wrap(async (req, res, next) => {
   const { userId } = req.params;
   let user;
   try {
-    user = await User.findById(userId, '-password');
+    user = await User.findById(userId, basicInfo).lean().exec();
   } catch (err) {
     const error = new HttpError(
       'Error fetching user details, please try again later',
@@ -52,7 +52,7 @@ const getUser = wrap(async (req, res, next) => {
       'User not found', 404,
     ));
   }
-  return res.json(user.toObject({ getters: true }));
+  return res.json(user);
 });
 
 const deleteUser = async (req, res, next) => {

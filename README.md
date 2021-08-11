@@ -242,7 +242,8 @@ Parameters:
 `:id`: the id of the product
 
 Returns:
-* 200 with
+* 200
+
 Headers:
  - Content-Type: product.image.contentType,
  - Content-Length': product.image.length

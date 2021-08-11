@@ -153,7 +153,7 @@ Returns:
     - productType is not in ['hardware', 'services']
     - brand is shorter than 3 characters
 
-###  `products/:id` update a product with id {:id}
+###  `/products/:id` update a product with id {:id}
 
 Method: `PUT`
 
@@ -181,7 +181,7 @@ Returns:
     - productType is not in ['hardware', 'services']
     - brand is shorter than 3 characters
 
-###  `products/:id` delete a product with id {:id}
+###  `/products/:id` delete a product with id {:id}
 
 Method: `DELETE`
 
@@ -194,7 +194,7 @@ Returns:
 * 404: If product with {:id} does not exist in database
 * 403: If user is not an admin
 
-###  `products/user/:id` gets a array of products created and/or last modified by user
+###  `/products/user/:id` gets a array of products created and/or last modified by user
 
 Method: `GET`
 
@@ -210,7 +210,7 @@ Returns:
 }
 ```
 
-###  `products/details/:id` gets details of product with id {:id}
+###  `/products/details/:id` gets details of product with id {:id}
 
 Method: `GET`
 
@@ -237,7 +237,7 @@ Returns:
 
 All methods in this area requires a JSON web token to be stored in a cookie with name `jwt`
 
-###  `users/` return all users in the database
+###  `/users/` return all users in the database
 
 Method: `GET`
 
@@ -258,7 +258,7 @@ Returns:
 }
 ```
 
-###  `users/:id` deletes user with {:id} from database
+###  `/users/:id` deletes user with {:id} from database
 
 Method: `DELETE`
 
@@ -271,7 +271,7 @@ Returns:
 * 404 - if no user with {:id} is found
 * 403 - if user is not an admin
 
-###  `users/self` returns details of user associated with jwt token
+###  `/users/self` returns details of user associated with jwt token
 
 Method: `get`
 
@@ -288,7 +288,7 @@ Returns:
     "updatedAt": "string"
 }
 ```
-###  `users/single/:id` returns details of user with {:id}
+###  `/users/single/:id` returns details of user with {:id}
 
 Method: `get`
 

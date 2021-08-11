@@ -11,17 +11,42 @@ const router = express.Router();
 // creates user if req body contains necessary details
 router.post('/register',
   [
-    check('username').not().isEmpty().withMessage('Username can not be empty')
+    check('username')
+      .stripLow()
+      .isString()
+      .bail()
+      .not()
+      .isEmpty()
+      .withMessage('Username can not be empty')
+      .bail()
+      .isLength({ min: 8 })
+      .withMessage('Must be at least 8 chars long')
       .bail(),
-    check('email').normalizeEmail().isEmail().withMessage('Invalid email')
+    check('email').normalizeEmail()
+      .isEmail()
+      .withMessage('Invalid email')
       .bail(),
-    check('password').not().isEmpty().withMessage('Invalid password')
+    check('password').not().isEmpty()
+      .withMessage('Invalid password')
+      .bail()
+      .isLength({ min: 8 })
+      .withMessage('Must be at least 8 chars long')
+      .bail(),
+    check('avatar')
+      .stripLow()
+      .isString()
+      .notEmpty()
+      .withMessage('Invalid option for avatar')
       .bail(),
   ], register);
 // logins user if username exists and password is correct
 router.post('/login',
   [
-    check('username').not().isEmpty().bail(),
+    check('username')
+      .not()
+      .isEmpty()
+      .withMessage('Invalid username')
+      .bail(),
     check('password').not().isEmpty().bail(),
   ], login);
 

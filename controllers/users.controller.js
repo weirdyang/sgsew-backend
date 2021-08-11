@@ -22,11 +22,15 @@ const getUsers = wrap(async (req, res, next) => {
 });
 
 const getUserInfo = wrap(async (req, res, next) => {
-  const user = await User.findById(req.user.id).lean();
-  if (!user) {
-    return res.sendStatus(404);
+  try {
+    const user = await User.findById(req.user.id).lean();
+    if (!user) {
+      return res.sendStatus(404);
+    }
+    return res.json({ user: user.toJSON() });
+  } catch (error) {
+    return next(error);
   }
-  return res.json({ user: user.toJSON() });
 });
 const getUser = wrap(async (req, res, next) => {
   // userId is passed in the req.pararms

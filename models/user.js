@@ -11,6 +11,27 @@ const roles = {
   normal: 'normal',
   superuser: 'admin',
 };
+
+const avatars = ['chamomile', 'orange', 'tea-tree', 'rose', 'rosemary', 'leaf'];
+
+function passwordValidator(value) {
+  if (!value) {
+    return null;
+  }
+
+  const hasUpperCase = /[A-Z]+/.test(value);
+
+  const hasLowerCase = /[a-z]+/.test(value);
+
+  const hasNumeric = /[0-9]+/.test(value);
+
+  return hasUpperCase && hasLowerCase && hasNumeric;
+}
+
+const passwordCheck = [
+  passwordValidator,
+  'Password must contain at least 1 lower case, 1 upper case and 1 numeric character.',
+];
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -26,6 +47,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     lowercase: true,
     default: 'leaf',
+    enum: avatars,
     required: [true, 'Please select an avatar'],
   },
   email: {
@@ -40,11 +62,12 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+    validate: passwordCheck,
     minLength: [8, 'Passwords need to be at least 8 characters.'],
   },
   role: {
     type: String,
-    enum: [roles.normal, roles.superuser],
+    enum: [roles.superuser, roles.normal],
     required: true,
     default: roles.normal,
   },

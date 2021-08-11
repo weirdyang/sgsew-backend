@@ -1,7 +1,7 @@
 const express = require('express');
 
 const {
-  getUsers, getUser, getUserInfo, getUserProfile, deleteUser,
+  getUsers, getUser, getUserInfo, deleteUser,
 } = require('../controllers/users.controller');
 const User = require('../models/user');
 

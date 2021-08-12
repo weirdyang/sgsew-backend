@@ -49,8 +49,8 @@ const searchProducts = async (req, res, next) => {
     const products = await Product.find(filter, 'price name user description productType brand')
       .where()
       .sort(sortFilter)
-      .skip(skip ?? 0)
-      .limit(limit ?? 12)
+      .skip(parseInt(skip, 10) ?? 0)
+      .limit(parseInt(limit, 10) ?? 12)
       .lean()
       .exec();
 
@@ -58,6 +58,7 @@ const searchProducts = async (req, res, next) => {
     debug(filter, 'return');
     return res.json({ data: products, count });
   } catch (error) {
+    debug(error);
     return next(error);
   }
 };

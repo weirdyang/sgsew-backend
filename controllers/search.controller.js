@@ -46,7 +46,7 @@ const searchProducts = async (req, res, next) => {
     }
 
     debug(filter, 'after');
-    const products = await Product.find(filter, '-image')
+    const products = await Product.find(filter, 'price name user description productType brand')
       .where()
       .sort(sortFilter)
       .skip(skip ?? 0)

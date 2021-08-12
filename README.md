@@ -53,7 +53,7 @@ Parameters: `body`
     "avatar": "string"
 }
 ```
-avatars: ['chamomile', 'orange', 'tea-tree', 'rose', 'rosemary', 'leaf']
+avatars available values: ['chamomile', 'orange', 'tea-tree', 'rose', 'rosemary', 'leaf']
 
 Returns:
 * 200: If new user is created succesfully
@@ -248,6 +248,8 @@ Headers:
  - Content-Type: product.image.contentType,
  - Content-Length': product.image.length
 
+ * 404 - if product with {:id} does not exist
+
 ## Users
 
 All methods in this area requires a JSON web token to be stored in a cookie with name `jwt`
@@ -322,5 +324,128 @@ Returns:
 ```
 * 404 - if user with {:id} does not exist
 
+## Search
 
+These methods are for retrieving data that can be accessed without an account
 
+###  `/search/image/:id` returns image of product with {:id}
+
+Method: `get`
+
+Returns:
+* 200
+```
+{
+    "_id": "string",
+    "role": "string",
+    "username": "string",
+    "email": "string",
+    "avatar": "string",
+    "createdAt": "string",
+    "updatedAt": "string"
+}
+```
+* 404 - if user with {:id} does not exist
+
+Method: `GET`
+
+Parameters:
+
+`:id`: the id of the product
+
+Returns:
+* 200
+
+Headers:
+ - Content-Type: product.image.contentType,
+ - Content-Length': product.image.length
+
+ * 404 - if product with {:id} does not exist
+
+###  `/search/image/:id` returns image of product with {:id}
+
+Method: `get`
+
+Returns:
+* 200
+```
+{
+    "_id": "string",
+    "role": "string",
+    "username": "string",
+    "email": "string",
+    "avatar": "string",
+    "createdAt": "string",
+    "updatedAt": "string"
+}
+```
+* 404 - if user with {:id} does not exist
+
+Method: `GET`
+
+Parameters:
+
+`:id`: the id of the product
+
+Returns:
+* 200
+
+Headers:
+ - Content-Type: product.image.contentType,
+ - Content-Length': product.image.length
+
+ * 404 - if product with {:id} does not exist
+
+ ###  `/search/products` finds products based on keyword
+
+Method: `get`
+
+Parameters:
+
+`query`:
+
+- keyword: string - will search for partial and full matches for keyword provided in the brand, description and name fields
+- sort: sorts results based on name or brand. default is nameasc. available options:
+    - nameasc - sort by name in ascending order
+    - namedesc - sort by name in descending order
+    - brandasc - sort by brand in ascending order
+    - nameasc - sort by name in ascending order
+- type: filters based on product type. available options: hardware, services.
+- limit: number - max amount of products to return. default is 12.
+- skip: number - number of documents to skip. default is 0.
+- min: number - min price. default is 0.
+- max: number - max price. default is `Number.MAX_VALUE`
+Returns:
+* 200
+```
+{
+    "data": [
+        {
+            "_id": "string",
+            "price": number,
+            "name": "string",
+            "user": "string",
+            "description": "string",
+            "productType": "string",
+            "brand": "string"
+        }
+    ],
+    "count": numer of documents which match the query
+}
+```
+* 404 - if user with {:id} does not exist
+
+Method: `GET`
+
+Parameters:
+
+`:id`: the id of the product
+
+Returns:
+* 200
+
+Headers:
+ - Content-Type: product.image.contentType,
+ - Content-Length': product.image.length
+
+ * 404 - if product with {:id} does not exist

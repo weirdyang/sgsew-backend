@@ -213,12 +213,17 @@ const deleteProduct = async (req, res, next) => {
       new HttpError(`Only ${roles.superuser} can delete products`, 403),
     );
   }
+  const { id } = req.params;
+  debug('!!!!');
+  if (!id) {
+    return next(new HttpError('Invalid product id', 422));
+  }
   const productId = mongoose.Types.ObjectId(req.params.id);
   const product = await Product.findByIdAndRemove(productId);
   if (!product) {
-    return res.status(404).send({ message: `no such product with ${productId}` });
+    return next(new HttpError(`No such product with id ${productId}`, 404));
   }
-  return res.json({ messag: `${product.name} deleted.` });
+  return res.json({ message: `${product.name} deleted.` });
 };
 
 const fetchProductById = async (req, res, next) => {

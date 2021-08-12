@@ -44,13 +44,20 @@ const searchProducts = async (req, res, next) => {
         ],
       });
     }
+    const skipInt = Number.isNaN(parseInt(skip, 10))
+      ? 0
+      : parseInt(skip, 10);
+
+    const limitInt = Number.isNaN(parseInt(limit, 10))
+      ? Number.MAX_SAFE_INTEGER
+      : parseInt(limit, 10);
 
     debug(filter, 'after');
     const products = await Product.find(filter, 'price name user description productType brand')
       .where()
       .sort(sortFilter)
-      .skip(parseInt(skip, 10) ?? 0)
-      .limit(parseInt(limit, 10) ?? 12)
+      .skip(skipInt)
+      .limit(limitInt)
       .lean()
       .exec();
 

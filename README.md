@@ -152,6 +152,8 @@ Returns:
     - name or description are shorter than 6 characters
     - productType is not in ['hardware', 'services']
     - brand is shorter than 3 characters
+    - description is longer than 140 characters
+    - image is larger than 10mb
 
 ###  `/products/:id` update a product with id {:id}
 
@@ -180,6 +182,8 @@ Returns:
     - name or description are shorter than 6 characters
     - productType is not in ['hardware', 'services']
     - brand is shorter than 3 characters
+    - description is longer than 140 characters
+    - image is larger than 10mb
 
 ###  `/products/:id` delete a product with id {:id}
 

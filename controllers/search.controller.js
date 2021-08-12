@@ -21,16 +21,12 @@ const searchProducts = async (req, res, next) => {
       sortFilter = option;
     }
   }
+  debug(min, 'min');
   try {
-    const priceFilter = [{ price: { $lt: min ?? 0 } }];
-    debug(priceFilter);
-    if (min) {
-      priceFilter.push({ price: { $gt: max } });
-    }
-
     const filter = {
       $and: [
-        { $or: [{ price: { $lt: max ?? Number.MAX_VALUE } }, { price: { $gt: min ?? 0 } }] },
+        { price: { $lt: max } },
+        { price: { $gt: min } },
         { name: { $exists: true } },
         { productType: { $exists: true, $in: type ? [type] : ['hardware', 'services'] } },
       ],

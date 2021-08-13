@@ -412,8 +412,10 @@ Parameters:
 - sort: sorts results based on name or brand. default is nameasc. available options:
     - nameasc - sort by name in ascending order
     - namedesc - sort by name in descending order
-    - brandasc - sort by brand in ascending order
+    - brandesc - sort by brand in ascending order
     - nameasc - sort by name in ascending order
+    - priceasc - sort by price in ascending order
+    - pricedesc - sort by price in descending order
 - type: filters based on product type. available options: hardware, services.
 - limit: number - max amount of products to return. default is 12.
 - skip: number - number of documents to skip. default is 0.

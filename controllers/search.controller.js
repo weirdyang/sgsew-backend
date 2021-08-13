@@ -5,9 +5,15 @@ const { Product } = require('../models/product');
 const sortOptions = {
   nameasc: { name: 1 },
   namedesc: { name: -1 },
-  brandasc: { brand: 1 },
-  branddsc: { brand: -1 },
+  brandasc: { normalizedBrand: 1 },
+  branddesc: { normalizedBrand: -1 },
+  priceasc: { price: 1 },
+  pricedesc: { price: -1 },
 };
+
+function isSafeNumber(value) {
+  return !Number.isNaN(parseInt(value, 10));
+}
 const searchProducts = async (req, res, next) => {
   const {
     keyword, skip, limit, sort, min, max, type,
@@ -21,12 +27,13 @@ const searchProducts = async (req, res, next) => {
       sortFilter = option;
     }
   }
-  debug(min, 'min');
+  const minInt = isSafeNumber(min) ? parseFloat(min, 10) : 0;
+  const maxInt = isSafeNumber(max) ? parseFloat(max) : max;
   try {
     const filter = {
       $and: [
-        { price: { $lt: max } },
-        { price: { $gt: min } },
+        { price: { $lt: maxInt ?? Number.MAX_SAFE_INTEGER } },
+        { price: { $gt: minInt ?? 0 } },
         { name: { $exists: true } },
         { productType: { $exists: true, $in: type ? [type] : ['hardware', 'services'] } },
       ],
@@ -40,13 +47,9 @@ const searchProducts = async (req, res, next) => {
         ],
       });
     }
-    const skipInt = Number.isNaN(parseInt(skip, 10))
-      ? 0
-      : parseInt(skip, 10);
+    const skipInt = isSafeNumber(skip) ? parseInt(skip, 10) : 0;
 
-    const limitInt = Number.isNaN(parseInt(limit, 10))
-      ? Number.MAX_SAFE_INTEGER
-      : parseInt(limit, 10);
+    const limitInt = isSafeNumber(limit) ? parseInt(limit, 10) : Number.MAX_SAFE_INTEGER;
 
     debug(filter, 'after');
     const products = await Product.find(filter, 'price name user description productType brand')

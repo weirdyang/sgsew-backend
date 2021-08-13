@@ -45,6 +45,7 @@ const createProduct = async (req, res, next) => {
       productType: req.body.productType,
       brand: req.body.brand,
       price: req.body.price,
+      normalizedBrand: req.body.brand,
       image: {
         data: req.file.buffer,
         contentType: req.file.mimetype,
@@ -135,6 +136,7 @@ const updateProductDetails = async (req, res, next) => {
         productType,
         price,
         brand,
+        normalizedBrand: brand,
         user: req.user.id,
       },
       { new: true },
@@ -192,6 +194,7 @@ const updateProduct = async (req, res, next) => {
         price,
         brand,
         productType,
+        normalizedBrand: brand,
         image: {
           data: req.file.buffer,
           contentType: req.file.mimetype,

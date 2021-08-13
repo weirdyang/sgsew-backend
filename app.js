@@ -23,6 +23,8 @@ const csrfProtection = csurf(
   },
 );
 const { errorHandler, notFoundHandler } = require('./middleware');
+const { Product } = require('./models/product');
+const { User } = require('./models/user');
 const { router: authRouter } = require('./routes/auth.route');
 const productRouter = require('./routes/products.route');
 const searchRouter = require('./routes/search.route');

@@ -33,6 +33,10 @@ const productSchema = new mongoose.Schema({
     unique: false,
     minLength: [3, 'Brand name needs to be at least 3 characters'],
   },
+  normalizedBrand: {
+    type: String,
+    lowercase: true,
+  },
   price: {
     type: Number,
     required: [true, 'Price is required'],

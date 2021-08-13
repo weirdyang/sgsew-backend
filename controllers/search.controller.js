@@ -5,8 +5,8 @@ const { Product } = require('../models/product');
 const sortOptions = {
   nameasc: { name: 1 },
   namedesc: { name: -1 },
-  brandasc: { brand: 1 },
-  branddesc: { brand: -1 },
+  brandasc: { normalizedBrand: 1 },
+  branddesc: { normalizedBrand: -1 },
   priceasc: { price: 1 },
   pricedesc: { price: -1 },
 };

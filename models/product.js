@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 
+const MAX_PRICE = 10000;
 function moreThanZero(value) {
   if (!value) {
     return null;
@@ -10,10 +11,23 @@ function moreThanZero(value) {
   }
   return +value > 0;
 }
-
+function lessThanMax(value) {
+  if (!value) {
+    return null;
+  }
+  if (Number.isNaN(parseFloat(value))) {
+    return null;
+  }
+  return +value <= MAX_PRICE;
+}
 const priceCheck = [
   moreThanZero,
   'Price must be more than zero',
+];
+
+const priceValidators = [
+  { validator: moreThanZero, msg: 'Price must be more than zero' },
+  { validator: lessThanMax, msg: `Price must be less than ${MAX_PRICE}` },
 ];
 const productTypes = ['hardware', 'services'];
 const productSchema = new mongoose.Schema({
@@ -55,7 +69,7 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'Price is required'],
     default: 0,
-    validate: priceCheck,
+    validate: priceValidators,
   },
   image:
   {

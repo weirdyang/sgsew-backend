@@ -1,6 +1,20 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 
+function moreThanZero(value) {
+  if (!value) {
+    return null;
+  }
+  if (Number.isNaN(parseFloat(value))) {
+    return null;
+  }
+  return +value > 0;
+}
+
+const priceCheck = [
+  moreThanZero,
+  'Price must be more than zero',
+];
 const productTypes = ['hardware', 'services'];
 const productSchema = new mongoose.Schema({
   name: {
@@ -41,6 +55,7 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'Price is required'],
     default: 0,
+    validate: priceCheck,
   },
   image:
   {

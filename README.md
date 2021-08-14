@@ -210,7 +210,19 @@ Returns:
 * 200
 ```
 {
-    "products": []
+    "products": [
+        {
+            "_id": "string",
+            "name": "string",
+            "user": "string",
+            "description": "string",
+            "price": "number",
+            "productType": "string",
+            "createdAt": "string",
+            "updatedAt": "string",
+            "brand": "string"
+        }
+    ]
 }
 ```
 
@@ -230,9 +242,11 @@ Returns:
     "name": "string",
     "user": "string",
     "description": "string",
+    "price": "number",
     "productType": "string",
     "createdAt": "string",
-    "updatedAt": "string"
+    "updatedAt": "string",
+    "brand": "string"
 }
 ```
 * 400 - if no product with that id exists in the database
@@ -334,57 +348,6 @@ These methods are for retrieving data that can be accessed without an account
 
 ###  `/search/image/:id` returns image of product with {:id}
 
-Method: `get`
-
-Returns:
-* 200
-```
-{
-    "_id": "string",
-    "role": "string",
-    "username": "string",
-    "email": "string",
-    "avatar": "string",
-    "createdAt": "string",
-    "updatedAt": "string"
-}
-```
-* 404 - if user with {:id} does not exist
-
-Method: `GET`
-
-Parameters:
-
-`:id`: the id of the product
-
-Returns:
-* 200
-
-Headers:
- - Content-Type: product.image.contentType,
- - Content-Length': product.image.length
-
- * 404 - if product with {:id} does not exist
-
-###  `/search/image/:id` returns image of product with {:id}
-
-Method: `get`
-
-Returns:
-* 200
-```
-{
-    "_id": "string",
-    "role": "string",
-    "username": "string",
-    "email": "string",
-    "avatar": "string",
-    "createdAt": "string",
-    "updatedAt": "string"
-}
-```
-* 404 - if user with {:id} does not exist
-
 Method: `GET`
 
 Parameters:
@@ -439,19 +402,3 @@ Returns:
     "count": numer of documents which match the query
 }
 ```
-* 404 - if user with {:id} does not exist
-
-Method: `GET`
-
-Parameters:
-
-`:id`: the id of the product
-
-Returns:
-* 200
-
-Headers:
- - Content-Type: product.image.contentType,
- - Content-Length': product.image.length
-
- * 404 - if product with {:id} does not exist

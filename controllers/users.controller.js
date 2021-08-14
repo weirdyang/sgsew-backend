@@ -23,11 +23,11 @@ const getUsers = wrap(async (req, res, next) => {
 
 const getUserInfo = wrap(async (req, res, next) => {
   try {
-    const user = await User.findById(req.user.id, basicInfo).lean();
+    const user = await User.findById(req.user.id, basicInfo);
     if (!user) {
       return res.sendStatus(404);
     }
-    return res.json(user);
+    return res.json(user.toJSON());
   } catch (error) {
     return next(error);
   }

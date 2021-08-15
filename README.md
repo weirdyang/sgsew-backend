@@ -154,6 +154,7 @@ Returns:
     - brand is shorter than 3 characters
     - description is longer than 140 characters
     - image is larger than 10mb
+    - price is less than 1 or more than 10,000
 
 ###  `/products/:id` update a product with id {:id}
 
@@ -184,6 +185,7 @@ Returns:
     - brand is shorter than 3 characters
     - description is longer than 140 characters
     - image is larger than 10mb
+    - price is less than 1 or more than 10,000
 
 ###  `/products/:id` delete a product with id {:id}
 

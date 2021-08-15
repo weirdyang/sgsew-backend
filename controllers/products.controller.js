@@ -3,13 +3,13 @@ const { validationResult } = require('express-validator');
 const mongoose = require('mongoose');
 const multer = require('multer');
 
+const { MAX_AGE, MAX_SIZE } = require('../config/index');
 const { errorFormatter, handleError } = require('../formatters');
 const HttpError = require('../models/http-error');
 const { Product } = require('../models/product');
 const { roles } = require('../models/user');
 
 const inMemoryStorage = multer.memoryStorage();
-const MAX_SIZE = 10 * 1024 * 1024;
 
 const validTypes = ['image/png', 'image/jpg', 'image/jpeg'];
 const fileFilter = (req, file, cb) => {
@@ -105,7 +105,7 @@ const fetchProductImage = async (req, res, next) => {
       return res.status(404).send({ message: `no such product with ${productId}` });
     }
     const img = Buffer.from(product.image.data, 'base64');
-
+    res.set(`Cache-control', 'public, max-age=${MAX_AGE}`);
     res.writeHead(200, {
       'Content-Type': product.image.contentType,
       'Content-Length': img.length,

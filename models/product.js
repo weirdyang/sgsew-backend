@@ -20,10 +20,6 @@ function lessThanMax(value) {
   }
   return +value <= MAX_PRICE;
 }
-const priceCheck = [
-  moreThanZero,
-  'Price must be more than zero',
-];
 
 const priceValidators = [
   { validator: moreThanZero, msg: 'Price must be more than zero' },

@@ -33,7 +33,7 @@ const searchProducts = async (req, res, next) => {
     const filter = {
       $and: [
         { price: { $lt: maxInt ?? Number.MAX_SAFE_INTEGER } },
-        { price: { $gt: minInt ?? 0 } },
+        { price: { $gte: minInt ?? 0 } },
         { name: { $exists: true } },
         { productType: { $exists: true, $in: type ? [type] : ['hardware', 'services'] } },
       ],

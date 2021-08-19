@@ -62,7 +62,7 @@ const login = (req, res, next) => {
           secure: process.env.NODE_ENV !== 'postman',
           sameSite: 'none',
         });
-      return res.status(200).send({ user: user.toJSON() });
+      return res.json(user.toJSON());
     })(req, res, next);
 };
 

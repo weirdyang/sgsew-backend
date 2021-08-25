@@ -59,7 +59,7 @@ Returns:
 * 200: If new user is created succesfully
 * 422: If validation fails
     - username contains special characters
-    - username length < 8
+    - username length < 6
     - password does not contain at least 1 lower case, 1 upper case and 1 numeric character
     - password length < 8
     - avatar chosen is not in the list of allowed choices

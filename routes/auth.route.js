@@ -20,7 +20,7 @@ router.post('/register',
       .withMessage('Username can not be empty')
       .bail()
       .isLength({ min: 6 })
-      .withMessage('Must be at least 8 chars long')
+      .withMessage('Username must be at least 6 chars long')
       .bail(),
     check('email').normalizeEmail()
       .isEmail()
@@ -30,7 +30,7 @@ router.post('/register',
       .withMessage('Invalid password')
       .bail()
       .isLength({ min: 8 })
-      .withMessage('Must be at least 8 chars long')
+      .withMessage('Password must be at least 8 chars long')
       .bail(),
     check('avatar')
       .stripLow()

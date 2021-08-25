@@ -19,7 +19,7 @@ router.post('/register',
       .isEmpty()
       .withMessage('Username can not be empty')
       .bail()
-      .isLength({ min: 8 })
+      .isLength({ min: 6 })
       .withMessage('Must be at least 8 chars long')
       .bail(),
     check('email').normalizeEmail()

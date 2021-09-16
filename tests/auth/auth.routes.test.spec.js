@@ -14,7 +14,7 @@ chai.should();
 const { expect } = chai;
 const user = {
   username: 'authtest',
-  password: 'authtest',
+  password: 'P@ssword123',
   email: 'zxczxczxca@email.com',
   avatar: 'leaf',
 };
@@ -80,8 +80,8 @@ describe('users', () => {
         .post('/auth/login')
         .send(user)
         .end((err, res) => {
-          assert.equal(res.body.user.email, user.email);
-          assert.equal(res.body.user.username, user.username);
+          assert.equal(res.body.email, user.email);
+          assert.equal(res.body.username, user.username);
 
           expect(res).to.have.status(200);
           done();

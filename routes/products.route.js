@@ -29,9 +29,22 @@ const fileCheck = check('file')
     return true;
   })
   .withMessage('Please ensure a file is attached, and is png or jpg format');
-const nameCheck = check('name').not().isEmpty().bail();
-const descriptionCheck = check('description').not().isEmpty().bail();
-const productTypeCheck = check('productType').not().isEmpty().bail();
+
+const nameCheck = check('name')
+  .not()
+  .isEmpty()
+  .bail();
+
+const descriptionCheck = check('description')
+  .not()
+  .isEmpty()
+  .bail();
+
+const productTypeCheck = check('productType')
+  .not()
+  .isEmpty()
+  .bail();
+
 const brandCheck = check('brand').not().isEmpty().bail();
 const priceCheck = check('price').not().isEmpty().isNumeric()
   .bail();

@@ -14,10 +14,11 @@ chai.use(chaiHttp);
 chai.should();
 const { expect } = chai;
 const user = new User({
-  username: '2qsdax',
+  username: 'products',
   password: 'P@ssword123',
-  email: 'asdasdasd@email.com',
+  email: 'products@email.com',
   avatar: 'leaf',
+  role: 'admin',
 });
 
 describe('users', () => {

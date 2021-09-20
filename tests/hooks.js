@@ -9,7 +9,7 @@ exports.mochaHooks = {
     setUpMongoose();
     try {
       await mongoose.connection.db.dropCollection('users');
-      await mongoose.connection.db.dropCollection('journals');
+      await mongoose.connection.db.dropCollection('products');
     } catch (error) {
       debug(error);
       debug('collections not dropped');

@@ -15,7 +15,7 @@ chai.should();
 const { expect } = chai;
 const user = new User({
   username: '2qsdax',
-  password: 'asdzxczxc',
+  password: 'P@ssword123',
   email: 'asdasdasd@email.com',
   avatar: 'leaf',
 });

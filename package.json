@@ -6,7 +6,7 @@
     "start": "node ./bin/www",
     "run:debug": "set DEBUG=app* & nodemon ./bin/www",
     "run:postman": "set NODE_ENV=postman&set DEBUG=app*& nodemon ./bin/www",
-    "test": "set NODE_ENV=test&& nyc --reporter=html --reporter=text mocha --exit tests/**/*.spec.js"
+    "test": "set DEBUG=app*&& set NODE_ENV=test&& nyc --reporter=html --reporter=text mocha --exit tests/**/*.spec.js"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",

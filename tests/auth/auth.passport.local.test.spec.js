@@ -12,10 +12,10 @@ const { User } = require('../../models/user');
 // Configure chai
 chai.use(chaiHttp);
 chai.should();
-const originalPassword = 'sdfsdfsdf';
+const originalPassword = 'P@ssword123';
 const user = new User({
   username: 'sdfsdfsdf',
-  password: 'sdfsdfsdf',
+  password: 'P@ssword123',
   avatar: 'leaf',
   email: 'sdfsdfsdf@email.com',
 });
